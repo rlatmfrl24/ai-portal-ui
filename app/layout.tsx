@@ -1,7 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata } from "next/types";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Theme, Text } from "@radix-ui/themes";
+import Logo from "../public/logo.svg?url";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +33,12 @@ export default function RootLayout({
         <Theme>
           <div className="min-h-screen w-full flex flex-col">
             {/* 고정 헤더 */}
-            <header className="sticky top-0 z-50 w-full flex justify-center items-center bg-white">
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                <Text size="3" weight="bold">
-                  AI Portal UI
-                </Text>
+            <header className="sticky top-0 z-50 h-16 w-full flex justify-center items-center bg-white">
+              <div className="container mx-auto flex items-center gap-6">
+                <Image src={Logo} alt="logo" width={66} height={32} />
+                <Text size="3">Introduction</Text>
+                <Text size="3">Pricing</Text>
+                <Text size="3">Management</Text>
               </div>
             </header>
 
