@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Theme, Text } from "@radix-ui/themes";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +26,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full`}
       >
-        {children}
+        <Theme>
+          <div className="min-h-screen w-full flex flex-col">
+            {/* 고정 헤더 */}
+            <header className="sticky top-0 z-50 w-full flex justify-center items-center bg-white">
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <Text size="3" weight="bold">
+                  AI Portal UI
+                </Text>
+              </div>
+            </header>
+
+            {/* 메인 콘텐츠 영역 - 스크롤 가능 */}
+            <main className="flex-1 w-full flex justify-center items-center">
+              <div className="w-full container mx-auto">{children}</div>
+            </main>
+          </div>
+        </Theme>
       </body>
     </html>
   );
