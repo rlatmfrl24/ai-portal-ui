@@ -1,19 +1,14 @@
 import type { Metadata } from "next/types";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Logo from "../public/logo.svg?url";
 import Image from "next/image";
 import Button from "./component/Button";
 import Link from "next/link";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -28,9 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full`}
-      >
+      <body className={`${inter.variable} antialiased min-h-screen w-full`}>
         <div className="min-h-screen w-full flex flex-col">
           {/* 고정 헤더 */}
           <header className="sticky top-0 z-50 h-16 w-full flex justify-center items-center bg-[#F5F5F4]">
