@@ -15,7 +15,7 @@ export default function Home() {
       <div className="container mx-auto mt-4">
         <CustomSlider>
           <div>
-            <div className="h-[376px] w-full p-10 bg-[#4e4d80] rounded-3xl shadow-2 flex flex-col">
+            <div className="h-[376px] w-full p-10 bg-[#4e4d80] rounded-3xl shadow-2 flex flex-col my-2">
               <span className="text-3xl italic text-[#C2C2CF]">
                 Intelligent Logistics
               </span>
@@ -26,7 +26,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <div className="h-[376px] w-full p-10 bg-[#E86940] rounded-3xl shadow-2 flex flex-col relative overflow-hidden">
+            <div className="h-[376px] w-full p-10 bg-[#E86940] rounded-3xl shadow-2 flex flex-col relative overflow-hidden my-2">
               <span className="text-3xl italic text-[#C2C2CF]">
                 Presize M&R Service
               </span>
@@ -42,7 +42,7 @@ export default function Home() {
           </div>
           <div>
             <div>
-              <div className="h-[376px] w-full p-10 bg-green-600 rounded-3xl shadow-2 flex flex-col">
+              <div className="h-[376px] w-full p-10 bg-green-600 rounded-3xl shadow-2 flex flex-col my-2">
                 <span className="text-3xl italic text-[#C2C2CF]">
                   Carousel Test
                 </span>

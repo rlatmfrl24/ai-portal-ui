@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import LeftArrow from "@/public/icon_arrow_left.svg?url";
 import RightArrow from "@/public/icon_arrow_right.svg?url";
 import Image from "next/image";
+import "./introduction.module.css";
 
 interface SliderSettings {
   dots?: boolean;
@@ -21,6 +22,8 @@ interface SliderSettings {
     breakpoint: number;
     settings: Partial<SliderSettings>;
   }>;
+  customPaging?: (i: number) => React.ReactElement;
+  dotsClass?: string;
 }
 
 interface SliderProps {
@@ -71,6 +74,8 @@ export default function CustomSlider({ children, settings }: SliderProps) {
     slidesToScroll: 1,
     prevArrow: <CustomArrow direction="prev" />,
     nextArrow: <CustomArrow direction="next" />,
+    dotsClass: "slick-dots slick-thumb",
+    customPaging: () => <div className="dot" />,
     ...settings,
   };
 
