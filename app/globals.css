@@ -26,3 +26,7 @@ html, body {
   --color-blue-66: rgba(95, 115, 241, 1);
   --color-blue-69: rgba(130, 105, 248, 1);
 }
+
+.shadow-2 {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 0 6px 0 rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.08);
+}

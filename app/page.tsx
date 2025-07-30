@@ -1,15 +1,61 @@
 import Button from "@/app/component/Button";
-import ArrowRight from "@/public/icon_left_arrow.svg?url";
+import ArrowRight from "@/public/icon_next_arrow.svg?url";
 import Image from "next/image";
 import ShippingInstruction from "@/public/img_shipping_instruction.svg?url";
 import Invoice from "@/public/img_invoice.svg?url";
 import Msds from "@/public/img_msds.svg?url";
 import Mnr from "@/public/img_mnr.svg?url";
+import CustomSlider from "@/app/introduction/Slider";
+import Slider1Image from "@/public/img_document_data_extraction.svg";
+import Slider2Image from "@/public/img_slide_mnr.svg";
 
 export default function Home() {
   return (
     <div>
-      <div className="flex container mx-auto gap-8">
+      <div className="container mx-auto mt-4">
+        <CustomSlider>
+          <div>
+            <div className="h-[376px] w-full p-10 bg-[#4e4d80] rounded-3xl shadow-2 flex flex-col">
+              <span className="text-3xl italic text-[#C2C2CF]">
+                Intelligent Logistics
+              </span>
+              <span className="text-4xl font-bold text-white">
+                Document Data Extraction
+              </span>
+              <Image src={Slider1Image} alt="slider-1" className="self-end" />
+            </div>
+          </div>
+          <div>
+            <div className="h-[376px] w-full p-10 bg-[#E86940] rounded-3xl shadow-2 flex flex-col relative overflow-hidden">
+              <span className="text-3xl italic text-[#C2C2CF]">
+                Presize M&R Service
+              </span>
+              <span className="text-4xl font-bold text-white">
+                with AI-based OCR
+              </span>
+              <Image
+                src={Slider2Image}
+                alt="slider-2"
+                className="self-end translate-x-10"
+              />
+            </div>
+          </div>
+          <div>
+            <div>
+              <div className="h-[376px] w-full p-10 bg-green-600 rounded-3xl shadow-2 flex flex-col">
+                <span className="text-3xl italic text-[#C2C2CF]">
+                  Carousel Test
+                </span>
+                <span className="text-4xl font-bold text-white">
+                  Green Slide Example
+                </span>
+                {/* 필요시 이미지 추가 가능 */}
+              </div>
+            </div>
+          </div>
+        </CustomSlider>
+      </div>
+      <div className="flex container mx-auto gap-8 mt-10">
         <OCRItem
           imageUrl={ShippingInstruction}
           title="Shipping Instruction"
