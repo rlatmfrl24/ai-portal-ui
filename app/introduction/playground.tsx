@@ -1,5 +1,7 @@
 import Image from "next/image";
 import PlaygroundImage from "@/public/intro_1.svg?url";
+import ArrowRight from "@/public/icon_left_arrow.svg?url";
+import Link from "next/link";
 
 export default function Playground() {
   return (
@@ -22,9 +24,12 @@ export default function Playground() {
           <br />
           interactive verification experience you can customize to your needs
         </p>
-        <button className="w-fit p-5 text-xl bg-black text-white rounded-2xl">
-          <span>Get Started</span>
-        </button>
+        <Link href="/introduction/playground">
+          <button className="w-fit p-5 text-xl bg-black text-white rounded-2xl flex items-center gap-2 cursor-pointer hover:bg-black/80 active:bg-black/90">
+            <span>Get Started</span>
+            <Image src={ArrowRight} alt="arrow-right" width={14} height={14} />
+          </button>
+        </Link>
       </div>
     </div>
   );

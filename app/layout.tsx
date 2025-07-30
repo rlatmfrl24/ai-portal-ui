@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <div className="min-h-screen w-full flex flex-col">
           {/* 고정 헤더 */}
-          <header className="sticky top-0 z-50 h-16 w-full flex justify-center items-center bg-white">
+          <header className="sticky top-0 z-50 h-16 w-full flex justify-center items-center bg-[#F5F5F4]">
             <div className="container mx-auto flex items-center gap-6 justify-between">
               <div className="flex items-center gap-6">
                 <Image src={Logo} alt="logo" width={66} height={32} />
@@ -50,7 +50,7 @@ export default function RootLayout({
 
           {/* 메인 콘텐츠 영역 - 스크롤 가능 */}
           <main className="flex-1 w-full flex justify-center">
-            <div className="w-full container mx-auto">{children}</div>
+            <div className="w-full">{children}</div>
           </main>
         </div>
       </body>

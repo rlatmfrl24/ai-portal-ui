@@ -1,0 +1,28 @@
+.textStrokeBlue {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--color-blue-69);
+}
+
+.textStrokeRed {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: var(--color-red-72);
+}
+
+.serviceItem {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.48);
+  padding: 32px;
+  font-size: 18px;
+  line-height: 1.5;
+}

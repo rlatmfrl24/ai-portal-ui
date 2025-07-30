@@ -8,7 +8,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
   color: #333;
-  background-color: #fff;
+  background-color: #F5F5F4
 }
 
 html, body {
@@ -21,5 +21,8 @@ html, body {
 
 @theme {
   --color-red-63: rgba(239, 121, 83, 1);
+  --color-red-72: rgba(248, 125, 117, 1);
+  --color-blue-62: rgba(97, 115, 218, 1);
   --color-blue-66: rgba(95, 115, 241, 1);
+  --color-blue-69: rgba(130, 105, 248, 1);
 }
