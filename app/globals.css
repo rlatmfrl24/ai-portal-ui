@@ -1,13 +1,4 @@
 @import "tailwindcss";
-@import "@radix-ui/themes/styles.css";
-
-
-/* CSS 초기화 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -26,4 +17,9 @@ html, body {
 
 #__next {
   height: 100%;
+}
+
+@theme {
+  --color-red-63: rgba(239, 121, 83, 1);
+  --color-blue-66: rgba(95, 115, 241, 1);
 }

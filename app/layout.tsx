@@ -1,9 +1,10 @@
 import type { Metadata } from "next/types";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Theme, Text } from "@radix-ui/themes";
 import Logo from "../public/logo.svg?url";
 import Image from "next/image";
+import Button from "./component/Button";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,24 +31,28 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen w-full`}
       >
-        <Theme>
-          <div className="min-h-screen w-full flex flex-col">
-            {/* 고정 헤더 */}
-            <header className="sticky top-0 z-50 h-16 w-full flex justify-center items-center bg-white">
-              <div className="container mx-auto flex items-center gap-6">
+        <div className="min-h-screen w-full flex flex-col">
+          {/* 고정 헤더 */}
+          <header className="sticky top-0 z-50 h-16 w-full flex justify-center items-center bg-white">
+            <div className="container mx-auto flex items-center gap-6 justify-between">
+              <div className="flex items-center gap-6">
                 <Image src={Logo} alt="logo" width={66} height={32} />
-                <Text size="3">Introduction</Text>
-                <Text size="3">Pricing</Text>
-                <Text size="3">Management</Text>
+                <Link href="/introduction">Introduction</Link>
+                <span className="cursor-pointer">Pricing</span>
+                <span className="cursor-pointer">Management</span>
               </div>
-            </header>
+              <div className="flex items-center gap-2">
+                <Button variant="outlined">Contact Sales</Button>
+                <Button variant="contained">Sign In</Button>
+              </div>
+            </div>
+          </header>
 
-            {/* 메인 콘텐츠 영역 - 스크롤 가능 */}
-            <main className="flex-1 w-full flex justify-center items-center">
-              <div className="w-full container mx-auto">{children}</div>
-            </main>
-          </div>
-        </Theme>
+          {/* 메인 콘텐츠 영역 - 스크롤 가능 */}
+          <main className="flex-1 w-full flex justify-center">
+            <div className="w-full container mx-auto">{children}</div>
+          </main>
+        </div>
       </body>
     </html>
   );
