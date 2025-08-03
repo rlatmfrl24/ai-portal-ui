@@ -1,4 +1,4 @@
-import Button from "@/app/component/Button";
+import Button from "@/app/components/Button";
 import ArrowRight from "@/public/icon_next_arrow.svg?url";
 import Image from "next/image";
 import ShippingInstruction from "@/public/img_shipping_instruction.svg?url";

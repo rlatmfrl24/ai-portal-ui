@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Logo from "../public/logo.svg?url";
 import Image from "next/image";
-import Button from "./component/Button";
+import Button from "./components/Button";
 import Link from "next/link";
 
 const inter = Inter({
