@@ -1,11 +1,11 @@
 "use client";
 
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import LeftArrow from "@/public/icon_arrow_left.svg?url";
 import RightArrow from "@/public/icon_arrow_right.svg?url";
 import Image from "next/image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./introduction.module.css";
 
 interface SliderSettings {
@@ -81,26 +81,6 @@ export default function CustomSlider({ children, settings }: SliderProps) {
 
   return (
     <div className="slider-container relative min-h-[200px]">
-      <style jsx>{`
-        .slider-container :global(.slick-slide) {
-          padding: 0 16px;
-        }
-        .slider-container :global(.slick-list) {
-          margin: 0 -16px;
-        }
-        .slider-container :global(.slick-slide:first-child) {
-          padding-left: 16px;
-        }
-        .slider-container :global(.slick-slide:last-child) {
-          padding-right: 16px;
-        }
-
-        /* slick carousel의 기본 화살표 숨기기 */
-        .slider-container :global(.slick-prev),
-        .slider-container :global(.slick-next) {
-          display: none !important;
-        }
-      `}</style>
       <Slider {...defaultSettings}>{children}</Slider>
     </div>
   );

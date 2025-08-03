@@ -5,7 +5,7 @@ import ShippingInstruction from "@/public/img_shipping_instruction.svg?url";
 import Invoice from "@/public/img_invoice.svg?url";
 import Msds from "@/public/img_msds.svg?url";
 import Mnr from "@/public/img_mnr.svg?url";
-import CustomSlider from "@/app/introduction/Slider";
+import CustomSlider from "./introduction/Slider";
 import Slider1Image from "@/public/img_document_data_extraction.svg";
 import Slider2Image from "@/public/img_slide_mnr.svg";
 

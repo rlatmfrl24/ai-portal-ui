@@ -31,6 +31,7 @@ html, body {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.04), 0 0 6px 0 rgba(0, 0, 0, 0.08), 0 4px 12px 0 rgba(0, 0, 0, 0.08);
 }
 
+/* slick carousel */
 .slick-dots.slick-thumb {
   display: flex;
   flex-direction: row;
@@ -50,4 +51,25 @@ html, body {
 .slick-dots.slick-thumb li.slick-active {
   background-color: rgba(13, 13, 13, 0.4);
   width: 88px;
+}
+
+.slider-container .slick-slide {
+  padding: 0 16px;
+}
+
+.slider-container .slick-list {
+  margin: 0 -16px;
+}
+
+.slider-container .slick-slide:first-child {
+  padding-left: 16px;
+}
+
+.slider-container .slick-slide:last-child {
+  padding-right: 16px;
+}
+
+.slider-container .slick-prev,
+.slider-container .slick-next {
+  display: none !important;
 }
