@@ -27,9 +27,7 @@ export default function RootLayout({
       </header>
 
       {/* 메인 콘텐츠 영역 - 스크롤 가능 */}
-      <main className="flex-1 w-full flex justify-center">
-        <div className="w-full">{children}</div>
-      </main>
+      <div className="flex-1 w-full flex justify-center">{children}</div>
     </div>
   );
 }

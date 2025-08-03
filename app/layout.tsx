@@ -20,12 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased min-h-screen w-full`}>
-        <div className="min-h-screen w-full flex flex-col">
-          {/* 메인 콘텐츠 영역 - 스크롤 가능 */}
-          <main className="flex-1 w-full flex justify-center">
-            <div className="w-full">{children}</div>
-          </main>
-        </div>
+        <main className="min-h-screen w-full flex flex-col">{children}</main>
       </body>
     </html>
   );
