@@ -5,7 +5,8 @@ import styles from "./introduction.module.css";
 export default function Services() {
   return (
     <div className="w-full relative min-h-screen">
-      <div className="absolute inset-0 flex items-center justify-start">
+      {/* 배경 이미지 - 화면 왼쪽에 고정 */}
+      <div className="absolute left-0 top-0 h-full flex items-center">
         <Image src={ServicesImage} alt="services" priority />
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
