@@ -20,6 +20,7 @@ export default function TabGroup({
 }) {
   const [activeTab, setActiveTab] = useState(activeId);
   const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
+  const [isInitialized, setIsInitialized] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
@@ -61,6 +62,7 @@ export default function TabGroup({
         const width = buttonRect.width;
 
         setSliderStyle({ left, width });
+        setIsInitialized(true); // 초기화 완료 표시
       }
     }, 0);
 
@@ -75,7 +77,9 @@ export default function TabGroup({
     >
       {/* 슬라이더 배경 */}
       <div
-        className="absolute top-1 bottom-1 bg-black rounded-xl transition-all duration-300 ease-out"
+        className={`absolute top-1 bottom-1 bg-black rounded-xl ${
+          isInitialized ? "transition-all duration-300 ease-out" : ""
+        }`}
         style={{
           left: `${sliderStyle.left}px`,
           width: `${sliderStyle.width}px`,

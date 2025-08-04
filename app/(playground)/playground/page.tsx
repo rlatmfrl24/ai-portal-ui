@@ -8,14 +8,9 @@ import ShippingInstructionsIcon from "@/public/icon_shipping_instruction.svg";
 import InvoicesIcon from "@/public/icon_invoice.svg";
 import MsdsIcon from "@/public/icon_msds.svg";
 import MnrIcon from "@/public/icon_mnr.svg";
+import TryOut from "./tryout";
 
 export default function Playground() {
-  const [currentTab, setCurrentTab] = useState("try-out");
-
-  const handleTabChange = (activeId: string) => {
-    setCurrentTab(activeId);
-  };
-
   const playgroundTypes = [
     {
       icon: <ShippingInstructionsIcon />,
@@ -35,7 +30,12 @@ export default function Playground() {
     },
   ];
 
+  const [currentTab, setCurrentTab] = useState("try-out");
   const [activeMenu, setActiveMenu] = useState(playgroundTypes[0]);
+
+  const handleTabChange = (activeId: string) => {
+    setCurrentTab(activeId);
+  };
 
   return (
     <div className="flex w-full flex-1 gap-4">
@@ -69,13 +69,10 @@ export default function Playground() {
         </div>
       </aside>
 
-      <div className="flex-1 border rounded-3xl bg-white p-6">
+      <div className="flex-1 border rounded-3xl bg-white">
         {/* 탭에 따른 콘텐츠 렌더링 */}
         {currentTab === "try-out" ? (
-          <div>
-            <h2 className="text-xl font-semibold mb-4">Try Out</h2>
-            <p>여기에 Try Out 관련 콘텐츠가 표시됩니다.</p>
-          </div>
+          <TryOut />
         ) : (
           <div>
             <h2 className="text-xl font-semibold mb-4">API Spec.</h2>
@@ -100,8 +97,10 @@ const TryOutMenuButton = ({
 }) => {
   return (
     <button
-      className={`flex gap-4 items-center font-semibold cursor-pointer p-4 ${
-        active ? "text-black" : "text-gray-500"
+      className={`flex gap-4 items-center font-semibold cursor-pointer p-4 rounded-lg transition-colors duration-300 ${
+        active
+          ? "text-black bg-[#EAEAEA]"
+          : "text-gray-500 hover:text-black hover:bg-black/10"
       }`}
       onClick={onClick}
     >

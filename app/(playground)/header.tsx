@@ -14,7 +14,7 @@ export default function PlaygroundHeader() {
       <IconButton icon={<ExitToAppIcon />} onClick={() => router.push("/")} />
       <div className="flex flex-1 justify-center items-center gap-2">
         <Logo height={32} width={66} />
-        <span>Playground</span>
+        <span className="text-2xl font-bold text-black">Playground</span>
       </div>
       <div>
         <IconButton icon={<ProfileIcon />} onClick={() => {}} />

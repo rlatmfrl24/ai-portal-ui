@@ -21,7 +21,7 @@ const TabButton = forwardRef<HTMLButtonElement, TabButtonProps>(
         type="button"
         onClick={handleClick}
         className={`relative flex-1 px-3 py-2 rounded-xl transition-colors duration-300 cursor-pointer z-10 ${
-          active ? "text-white" : "text-gray-500 hover:text-gray-700"
+          active ? "text-white hover:" : "text-gray-500 hover:text-gray-700"
         }`}
         {...rest}
       >
