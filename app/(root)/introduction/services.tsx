@@ -1,5 +1,4 @@
-import Image from "next/image";
-import ServicesImage from "@/public/intro_2_bg.svg?url";
+import ServicesImage from "@/public/intro_2_bg.svg";
 import styles from "./introduction.module.css";
 
 export default function Services() {
@@ -7,7 +6,7 @@ export default function Services() {
     <div className="w-full relative min-h-screen">
       {/* 배경 이미지 - 화면 왼쪽에 고정 */}
       <div className="absolute left-0 top-0 h-full flex items-center">
-        <Image src={ServicesImage} alt="services" priority />
+        <ServicesImage />
       </div>
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen">
         <span className="text-xl font-bold bg-gradient-to-r from-red-63 from-10% to-blue-66 to-90% text-transparent bg-clip-text">

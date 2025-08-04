@@ -3,6 +3,11 @@
 import { useState } from "react";
 import TabButton from "@/app/components/Tab/TabButton";
 import TabGroup from "@/app/components/Tab/TabGroup";
+import DropdownArrowIcon from "@/public/icon_dropdown_arrow.svg";
+import ShippingInstructionsIcon from "@/public/icon_shipping_instruction.svg";
+import InvoicesIcon from "@/public/icon_invoice.svg";
+import MsdsIcon from "@/public/icon_msds.svg";
+import MnrIcon from "@/public/icon_mnr.svg";
 
 export default function Playground() {
   const [currentTab, setCurrentTab] = useState("try-out");
@@ -11,17 +16,56 @@ export default function Playground() {
     setCurrentTab(activeId);
   };
 
+  const playgroundTypes = [
+    {
+      icon: <ShippingInstructionsIcon />,
+      name: "Shipping Instructions",
+    },
+    {
+      icon: <InvoicesIcon />,
+      name: "Invoices",
+    },
+    {
+      icon: <MsdsIcon />,
+      name: "Material Safety Data Sheet",
+    },
+    {
+      icon: <MnrIcon />,
+      name: "M & R",
+    },
+  ];
+
+  const [activeMenu, setActiveMenu] = useState(playgroundTypes[0]);
+
   return (
     <div className="flex w-full flex-1 gap-4">
-      <aside className="w-80 h-full shadow-1 rounded-3xl bg-white p-4">
-        <TabGroup activeId="try-out" onChange={handleTabChange}>
-          <TabButton id="try-out">Try Out</TabButton>
-          <TabButton id="api-spec">API Spec.</TabButton>
-        </TabGroup>
+      <aside className="w-80 h-full shadow-1 rounded-3xl bg-white">
+        <div className="p-4">
+          <TabGroup activeId="try-out" onChange={handleTabChange}>
+            <TabButton id="try-out">Try Out</TabButton>
+            <TabButton id="api-spec">API Spec.</TabButton>
+          </TabGroup>
+        </div>
 
-        {/* 현재 활성 탭 표시 (예시) */}
-        <div className="mt-4 p-3 bg-gray-50 rounded-lg">
-          <p className="text-sm text-gray-600">현재 활성 탭: {currentTab}</p>
+        <div className="pt-4 pb-10 py-8 flex flex-col border-b border-gray-200">
+          <button className="flex items-center justify-center text-[22px] font-bold text-black cursor-pointer pl-4">
+            Hutchison Port
+            <DropdownArrowIcon />
+          </button>
+          <span className="flex justify-center w-full text-xs text-gray-500">
+            Extracts data from Invoice documents.
+          </span>
+        </div>
+        <div className="flex flex-col gap-2 p-4">
+          {playgroundTypes.map((type) => (
+            <TryOutMenuButton
+              key={type.name}
+              icon={type.icon}
+              name={type.name}
+              active={activeMenu.name === type.name}
+              onClick={() => setActiveMenu(type)}
+            />
+          ))}
         </div>
       </aside>
 
@@ -42,3 +86,27 @@ export default function Playground() {
     </div>
   );
 }
+
+const TryOutMenuButton = ({
+  icon,
+  name,
+  active,
+  onClick,
+}: {
+  icon: React.ReactNode;
+  name: string;
+  active: boolean;
+  onClick: () => void;
+}) => {
+  return (
+    <button
+      className={`flex gap-4 items-center font-semibold cursor-pointer p-4 ${
+        active ? "text-black" : "text-gray-500"
+      }`}
+      onClick={onClick}
+    >
+      {icon}
+      <span>{name}</span>
+    </button>
+  );
+};

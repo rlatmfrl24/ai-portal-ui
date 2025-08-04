@@ -1,10 +1,9 @@
 import Button from "@/app/components/Button";
-import ArrowRight from "@/public/icon_next_arrow.svg?url";
-import Image from "next/image";
-import ShippingInstruction from "@/public/img_shipping_instruction.svg?url";
-import Invoice from "@/public/img_invoice.svg?url";
-import Msds from "@/public/img_msds.svg?url";
-import Mnr from "@/public/img_mnr.svg?url";
+import ArrowRight from "@/public/icon_next_arrow.svg";
+import ShippingInstruction from "@/public/img_shipping_instruction.svg";
+import Invoice from "@/public/img_invoice.svg";
+import Msds from "@/public/img_msds.svg";
+import Mnr from "@/public/img_mnr.svg";
 import CustomSlider from "./Slider";
 import Slider1Image from "@/public/img_document_data_extraction.svg";
 import Slider2Image from "@/public/img_slide_mnr.svg";
@@ -15,14 +14,14 @@ const SLIDER_DATA = [
     title: "Intelligent Logistics",
     subtitle: "Document Data Extraction",
     bgColor: "#4e4d80",
-    image: Slider1Image,
+    image: <Slider1Image />,
     imageClassName: "self-end",
   },
   {
     title: "Presize M&R Service",
     subtitle: "with AI-based OCR",
     bgColor: "#E86940",
-    image: Slider2Image,
+    image: <Slider2Image />,
     imageClassName: "self-end translate-x-10",
   },
   {
@@ -37,22 +36,22 @@ const SLIDER_DATA = [
 // OCR 아이템 데이터
 const OCR_ITEMS = [
   {
-    imageUrl: ShippingInstruction,
+    image: <ShippingInstruction />,
     title: "Shipping Instruction",
     description: "Extracts data from Ocean Carrier SI documents.",
   },
   {
-    imageUrl: Invoice,
+    image: <Invoice />,
     title: "Invoice",
     description: "Extracts data from Terminal Invoice documents.",
   },
   {
-    imageUrl: Msds,
+    image: <Msds />,
     title: "MSDS",
     description: "Extracts data from Material Safety Data Sheet documents.",
   },
   {
-    imageUrl: Mnr,
+    image: <Mnr />,
     title: "M&R",
     description: "Extracts data from Manifest & Receipt documents.",
   },
@@ -76,11 +75,7 @@ export default function Home() {
                   {slide.subtitle}
                 </span>
                 {slide.image && (
-                  <Image
-                    src={slide.image}
-                    alt={`slider-${index + 1}`}
-                    className={slide.imageClassName}
-                  />
+                  <div className={slide.imageClassName}>{slide.image}</div>
                 )}
               </div>
             </div>
@@ -91,7 +86,7 @@ export default function Home() {
         {OCR_ITEMS.map((item) => (
           <OCRItem
             key={item.title}
-            imageUrl={item.imageUrl}
+            image={item.image}
             title={item.title}
             description={item.description}
           />
@@ -104,16 +99,18 @@ export default function Home() {
 interface OCRItemProps {
   title: string;
   description: string;
-  imageUrl: string;
+  image: React.ReactNode;
 }
 
-function OCRItem({ title, description, imageUrl }: OCRItemProps) {
+function OCRItem({ title, description, image }: OCRItemProps) {
   return (
     <div className="flex flex-1 flex-col items-center p-4 rounded-3xl mt-4 shadow-2">
       <div className="self-end border px-2 py-1 rounded-lg leading-4 font-medium">
         OCR
       </div>
-      <Image src={imageUrl} alt={title} />
+      <div className="w-full h-full flex justify-center items-center">
+        {image}
+      </div>
       <span className="text-2xl font-bold text-black mt-3 mb-4">{title}</span>
       <span className="text-center text-balance text-lg mb-12">
         {description}
@@ -123,7 +120,7 @@ function OCRItem({ title, description, imageUrl }: OCRItemProps) {
         <Button variant="contained" className="flex-1">
           <span className="flex items-center gap-2 whitespace-nowrap justify-center">
             Go to Playground
-            <Image src={ArrowRight} alt="arrow-right" />
+            <ArrowRight />
           </span>
         </Button>
       </div>
