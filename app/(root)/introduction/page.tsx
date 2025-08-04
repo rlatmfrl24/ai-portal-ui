@@ -3,7 +3,7 @@ import Services from "./services";
 
 export default function Introduction() {
   return (
-    <div>
+    <div className="w-full">
       <Playground />
       <Services />
     </div>
