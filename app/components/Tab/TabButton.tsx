@@ -1,33 +1,36 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
-export default function TabButton({
-  children,
-  active = false,
-  id, // eslint-disable-line @typescript-eslint/no-unused-vars
-  onClick,
-}: {
+interface TabButtonProps {
   children: React.ReactNode;
   active?: boolean;
   id: string;
   onClick?: () => void;
-}) {
-  const handleClick = () => {
-    if (onClick) {
-      onClick();
-    }
-  };
-
-  return (
-    <button
-      type="button"
-      onClick={handleClick}
-      className={`flex-1 px-3 py-2 rounded-xl transition-colors duration-200 cursor-pointer ${
-        active
-          ? "bg-black text-white"
-          : "text-gray-500 hover:text-gray-700 hover:bg-gray-50"
-      }`}
-    >
-      {children}
-    </button>
-  );
 }
+
+const TabButton = forwardRef<HTMLButtonElement, TabButtonProps>(
+  ({ children, active = false, onClick, ...rest }, ref) => {
+    const handleClick = () => {
+      if (onClick) {
+        onClick();
+      }
+    };
+
+    return (
+      <button
+        ref={ref}
+        type="button"
+        onClick={handleClick}
+        className={`relative flex-1 px-3 py-2 rounded-xl transition-colors duration-300 cursor-pointer z-10 ${
+          active ? "text-white" : "text-gray-500 hover:text-gray-700"
+        }`}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+TabButton.displayName = "TabButton";
+
+export default TabButton;

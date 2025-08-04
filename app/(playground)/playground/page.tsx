@@ -8,10 +8,7 @@ export default function Playground() {
   const [currentTab, setCurrentTab] = useState("try-out");
 
   const handleTabChange = (activeId: string) => {
-    console.log("Active tab changed to:", activeId);
     setCurrentTab(activeId);
-    // 여기서 탭 변경에 따른 추가 로직을 구현할 수 있습니다
-    // 예: API 호출, 콘텐츠 변경 등
   };
 
   return (
