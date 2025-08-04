@@ -2,7 +2,7 @@ import PlaygroundImage from "@/public/intro_1.svg";
 import ArrowRight from "@/public/icon_next_arrow.svg";
 import Link from "next/link";
 
-export default function Playground() {
+export default function FirstSection() {
   return (
     <div className="w-full h-[516px] mt-[160px] mb-[240px] flex justify-center items-center gap-12">
       <PlaygroundImage />

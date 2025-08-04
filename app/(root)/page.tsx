@@ -7,6 +7,7 @@ import Mnr from "@/public/img_mnr.svg";
 import CustomSlider from "./Slider";
 import Slider1Image from "@/public/img_document_data_extraction.svg";
 import Slider2Image from "@/public/img_slide_mnr.svg";
+import Link from "next/link";
 
 // 슬라이더 데이터
 const SLIDER_DATA = [
@@ -36,21 +37,25 @@ const SLIDER_DATA = [
 // OCR 아이템 데이터
 const OCR_ITEMS = [
   {
+    id: "shipping-instruction",
     image: <ShippingInstruction />,
     title: "Shipping Instruction",
     description: "Extracts data from Ocean Carrier SI documents.",
   },
   {
+    id: "invoice",
     image: <Invoice />,
     title: "Invoice",
     description: "Extracts data from Terminal Invoice documents.",
   },
   {
+    id: "msds",
     image: <Msds />,
     title: "MSDS",
     description: "Extracts data from Material Safety Data Sheet documents.",
   },
   {
+    id: "mnr",
     image: <Mnr />,
     title: "M&R",
     description: "Extracts data from Manifest & Receipt documents.",
@@ -85,7 +90,8 @@ export default function Home() {
       <div className="flex container mx-auto gap-8 mt-10">
         {OCR_ITEMS.map((item) => (
           <OCRItem
-            key={item.title}
+            key={item.id}
+            id={item.id}
             image={item.image}
             title={item.title}
             description={item.description}
@@ -97,12 +103,13 @@ export default function Home() {
 }
 
 interface OCRItemProps {
+  id: string;
   title: string;
   description: string;
   image: React.ReactNode;
 }
 
-function OCRItem({ title, description, image }: OCRItemProps) {
+function OCRItem({ id, title, description, image }: OCRItemProps) {
   return (
     <div className="flex flex-1 flex-col items-center p-4 rounded-3xl mt-4 shadow-2">
       <div className="self-end border px-2 py-1 rounded-lg leading-4 font-medium">
@@ -117,12 +124,14 @@ function OCRItem({ title, description, image }: OCRItemProps) {
       </span>
       <div className="flex gap-2 w-full">
         <Button>Subscribe</Button>
-        <Button variant="contained" className="flex-1">
-          <span className="flex items-center gap-2 whitespace-nowrap justify-center">
-            Go to Playground
-            <ArrowRight />
-          </span>
-        </Button>
+        <Link href={`/playground?id=${id}`} className="flex-1">
+          <Button variant="contained" className="w-full">
+            <span className="flex items-center gap-2 whitespace-nowrap justify-center">
+              Go to Playground
+              <ArrowRight />
+            </span>
+          </Button>
+        </Link>
       </div>
     </div>
   );

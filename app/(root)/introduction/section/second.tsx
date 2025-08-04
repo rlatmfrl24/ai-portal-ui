@@ -1,7 +1,7 @@
 import ServicesImage from "@/public/intro_2_bg.svg";
-import styles from "./introduction.module.css";
+import styles from "../introduction.module.css";
 
-export default function Services() {
+export default function SecondSection() {
   return (
     <div className="w-full relative min-h-screen">
       {/* 배경 이미지 - 화면 왼쪽에 고정 */}

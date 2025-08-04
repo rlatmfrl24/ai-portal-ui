@@ -1,11 +1,13 @@
-import Playground from "./playground";
-import Services from "./services";
+import FirstSection from "./section/first";
+import SecondSection from "./section/second";
+import ThirdSection from "./section/third";
 
 export default function Introduction() {
   return (
     <div className="w-full">
-      <Playground />
-      <Services />
+      <FirstSection />
+      <SecondSection />
+      <ThirdSection />
     </div>
   );
 }

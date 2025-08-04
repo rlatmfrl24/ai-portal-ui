@@ -9,29 +9,39 @@ import InvoicesIcon from "@/public/icon_invoice.svg";
 import MsdsIcon from "@/public/icon_msds.svg";
 import MnrIcon from "@/public/icon_mnr.svg";
 import TryOut from "./tryout";
+import { useSearchParams } from "next/navigation";
 
 export default function Playground() {
   const playgroundTypes = [
     {
+      id: "shipping-instruction",
       icon: <ShippingInstructionsIcon />,
       name: "Shipping Instructions",
     },
     {
+      id: "invoice",
       icon: <InvoicesIcon />,
       name: "Invoices",
     },
     {
+      id: "msds",
       icon: <MsdsIcon />,
       name: "Material Safety Data Sheet",
     },
     {
+      id: "mnr",
       icon: <MnrIcon />,
       name: "M & R",
     },
   ];
 
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
+
   const [currentTab, setCurrentTab] = useState("try-out");
-  const [activeMenu, setActiveMenu] = useState(playgroundTypes[0]);
+  const [activeMenu, setActiveMenu] = useState(
+    playgroundTypes.find((type) => type.id === id) || playgroundTypes[0]
+  );
 
   const handleTabChange = (activeId: string) => {
     setCurrentTab(activeId);
