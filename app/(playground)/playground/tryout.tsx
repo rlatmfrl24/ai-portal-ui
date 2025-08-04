@@ -4,6 +4,8 @@ import Button from "@/app/components/Button";
 import UploadIcon from "@/public/icon_upload.svg";
 import CheckIcon from "@/public/icon_check.svg";
 import { useState } from "react";
+import TabGroup from "@/app/components/Tab/TabGroup";
+import TabButton from "@/app/components/Tab/TabButton";
 
 export default function TryOut() {
   const pdfItems = [
@@ -24,6 +26,7 @@ export default function TryOut() {
   const [selectedItem, setSelectedItem] = useState<string | null>(
     pdfItems[0].id
   );
+  const [activeTab, setActiveTab] = useState<string>("parsing-result");
 
   return (
     <div className="flex h-full">
@@ -53,7 +56,25 @@ export default function TryOut() {
         </div>
         <div className="flex flex-1 bg-gray-100 rounded-lg"></div>
       </div>
-      <div className="w-1/2">2</div>
+      <div className="w-1/2">
+        <div className="w-fit ml-6">
+          <TabGroup
+            activeId={activeTab}
+            onChange={(tabId) => setActiveTab(tabId)}
+            variant="line"
+          >
+            <TabButton id="parsing-result">Parsing Result</TabButton>
+            <TabButton id="json-file">JSON File</TabButton>
+          </TabGroup>
+        </div>
+        <div className="border-t border-gray-200">
+          {activeTab === "parsing-result" ? (
+            <div>Parsing Result</div>
+          ) : (
+            <div>JSON File</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

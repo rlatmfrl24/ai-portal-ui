@@ -7,16 +7,19 @@ interface TabButtonProps {
   active?: boolean;
   id: string;
   onClick?: () => void;
+  variant?: "button" | "line";
 }
 
 export default function TabGroup({
   children,
   activeId,
   onChange,
+  variant = "button",
 }: {
   children: React.ReactNode;
   activeId: string;
   onChange?: (activeId: string) => void;
+  variant?: "button" | "line";
 }) {
   const [activeTab, setActiveTab] = useState(activeId);
   const [sliderStyle, setSliderStyle] = useState({ left: 0, width: 0 });
@@ -73,24 +76,31 @@ export default function TabGroup({
   return (
     <div
       ref={containerRef}
-      className="relative flex gap-2 p-1 rounded-xl border border-[#C9D3DE]"
+      className={
+        variant === "button"
+          ? "relative flex gap-2 p-1 rounded-xl border border-[#C9D3DE]"
+          : "relative flex gap-0"
+      }
     >
-      {/* 슬라이더 배경 */}
-      <div
-        className={`absolute top-1 bottom-1 bg-black rounded-xl ${
-          isInitialized ? "transition-all duration-300 ease-out" : ""
-        }`}
-        style={{
-          left: `${sliderStyle.left}px`,
-          width: `${sliderStyle.width}px`,
-        }}
-      />
+      {/* 슬라이더 배경 (button variant에서만 표시) */}
+      {variant === "button" && (
+        <div
+          className={`absolute top-1 bottom-1 bg-black rounded-xl ${
+            isInitialized ? "transition-all duration-300 ease-out" : ""
+          }`}
+          style={{
+            left: `${sliderStyle.left}px`,
+            width: `${sliderStyle.width}px`,
+          }}
+        />
+      )}
 
       {React.Children.map(children, (child) => {
         if (React.isValidElement<TabButtonProps>(child) && child.props.id) {
           const isActive = child.props.id === activeTab;
           const props = {
             active: isActive,
+            variant: variant,
             onClick: () => handleTabClick(child.props.id),
             ref: (el: HTMLButtonElement | null) => {
               buttonRefs.current[child.props.id] = el;
