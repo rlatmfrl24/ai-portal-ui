@@ -1,0 +1,48 @@
+.textStrokeBlue {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-blue-69);
+  -webkit-text-stroke: 2px var(--color-blue-69);
+  text-stroke: 2px var(--color-blue-69);
+  -webkit-text-fill-color: transparent;
+}
+
+.textStrokeRed {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-red-72);
+  -webkit-text-stroke: 2px var(--color-red-72);
+  text-stroke: 2px var(--color-red-72);
+  -webkit-text-fill-color: transparent;
+}
+
+.textStrokeWhite {
+  font-size: 180px;
+  font-family: "Inter";
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -3px;
+  color: var(--color-white);
+  white-space: nowrap;
+  position: relative;
+  -webkit-text-stroke: 1.5px var(--color-white);
+  text-stroke: 1.5px var(--color-white);
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+
+.serviceItem {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.48);
+  padding: 32px;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+
