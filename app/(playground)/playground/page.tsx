@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import TabButton from "@/app/components/Tab/TabButton";
 import TabGroup from "@/app/components/Tab/TabGroup";
 import DropdownArrowIcon from "@/public/icon_dropdown_arrow.svg";
@@ -11,7 +11,7 @@ import MnrIcon from "@/public/icon_mnr.svg";
 import TryOut from "./tryout";
 import { useSearchParams } from "next/navigation";
 
-export default function Playground() {
+function PlaygroundContent() {
   const playgroundTypes = [
     {
       id: "shipping-instruction",
@@ -91,6 +91,14 @@ export default function Playground() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Playground() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PlaygroundContent />
+    </Suspense>
   );
 }
 
