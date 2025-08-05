@@ -4,6 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
+import Select from "@/app/components/Select";
+import LeftArrowIcon from "@/public/icon_arrow_left.svg";
+import RightArrowIcon from "@/public/icon_arrow_right.svg";
 
 // PDF.js 컴포넌트를 동적으로 로드 (SSR 비활성화)
 const Document = dynamic(
@@ -33,6 +36,17 @@ export default function PdfViewer({ url }: PdfViewerProps) {
   const [scale, setScale] = useState<number>(1.0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // 줌 옵션들
+  const zoomOptions = [
+    { value: 0.5, label: "50%" },
+    { value: 0.75, label: "75%" },
+    { value: 1.0, label: "100%" },
+    { value: 1.25, label: "125%" },
+    { value: 1.5, label: "150%" },
+    { value: 2.0, label: "200%" },
+    { value: 3.0, label: "300%" },
+  ];
+
   // PDF.js 초기화
   useEffect(() => {
     initializePdfJs();
@@ -50,183 +64,70 @@ export default function PdfViewer({ url }: PdfViewerProps) {
     setPageNumber((prev) => Math.min(prev + 1, numPages));
   };
 
-  const zoomIn = () => {
-    setScale((prev) => Math.min(prev + 0.2, 3.0));
-  };
-
-  const zoomOut = () => {
-    setScale((prev) => Math.max(prev - 0.2, 0.5));
-  };
-
-  const resetZoom = () => {
-    setScale(1.0);
+  const handleZoomChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setScale(parseFloat(event.target.value));
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-      }}
-    >
-      {/* 컨트롤 바 */}
+    <div className="w-full h-full relative overflow-hidden">
+      {/* PDF 뷰어 */}
       <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          padding: "8px",
-          borderBottom: "1px solid #e5e5e5",
-          flexShrink: 0,
-        }}
+        ref={containerRef}
+        className="absolute top-0 left-0 right-0 bottom-0 overflow-auto p-4"
       >
-        {/* 페이지 네비게이션 */}
+        <div className="w-max min-w-full flex justify-center pb-20">
+          <Document
+            file={url}
+            onLoadSuccess={onDocumentLoadSuccess}
+            loading={<div className="p-5 text-center">PDF를 로딩 중...</div>}
+            error={
+              <div className="p-5 text-center text-red-600">
+                PDF를 불러올 수 없습니다.
+              </div>
+            }
+          >
+            <Page
+              className="shadow-2 rounded-lg overflow-hidden"
+              pageNumber={pageNumber}
+              scale={scale}
+              renderTextLayer={true}
+              renderAnnotationLayer={true}
+              loading={
+                <div className="p-5 text-center">페이지를 로딩 중...</div>
+              }
+            />
+          </Document>
+        </div>
+      </div>
+
+      {/* 페이지 네비게이션 - 중앙 하단 */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-3 z-10">
         <button
           onClick={goToPrevPage}
           disabled={pageNumber <= 1}
-          style={{
-            padding: "4px 8px",
-            border: "1px solid #ccc",
-            background: "white",
-            cursor: "pointer",
-          }}
+          className="cursor-pointer w-8 h-8 bg-white outline-none rounded flex items-center justify-center shadow-1"
         >
-          이전
+          <LeftArrowIcon className="w-4 h-4" />
         </button>
-        <span style={{ fontSize: "14px" }}>
+        <span style={{ fontSize: "14px", fontWeight: "500" }}>
           {pageNumber} / {numPages}
         </span>
         <button
           onClick={goToNextPage}
           disabled={pageNumber >= numPages}
-          style={{
-            padding: "4px 8px",
-            border: "1px solid #ccc",
-            background: "white",
-            cursor: "pointer",
-          }}
+          className="cursor-pointer w-8 h-8 bg-white outline-none rounded flex items-center justify-center shadow-1"
         >
-          다음
+          <RightArrowIcon className="w-4 h-4" />
         </button>
-
-        {/* 줌 컨트롤 */}
-        <div
-          style={{
-            marginLeft: "16px",
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-          }}
-        >
-          <button
-            onClick={zoomOut}
-            style={{
-              padding: "4px 8px",
-              border: "1px solid #ccc",
-              background: "white",
-              cursor: "pointer",
-            }}
-          >
-            -
-          </button>
-          <span
-            style={{ fontSize: "14px", minWidth: "50px", textAlign: "center" }}
-          >
-            {Math.round(scale * 100)}%
-          </span>
-          <button
-            onClick={zoomIn}
-            style={{
-              padding: "4px 8px",
-              border: "1px solid #ccc",
-              background: "white",
-              cursor: "pointer",
-            }}
-          >
-            +
-          </button>
-          <button
-            onClick={resetZoom}
-            style={{
-              padding: "4px 8px",
-              border: "1px solid #ccc",
-              background: "white",
-              cursor: "pointer",
-              marginLeft: "4px",
-            }}
-          >
-            100%
-          </button>
-        </div>
       </div>
 
-      {/* PDF 뷰어 */}
-      <div
-        style={{
-          flex: 1,
-          position: "relative",
-          overflow: "hidden", // 상위 레이아웃 보호
-          minHeight: 0, // flex shrink 허용
-        }}
-      >
-        <div
-          ref={containerRef}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            overflow: "auto", // 스크롤 허용
-            padding: "16px",
-          }}
-        >
-          <div
-            style={{
-              width: "max-content", // 내용 크기에 맞춤 (확대 시 스크롤 가능)
-              minWidth: "100%", // 축소 시 최소 너비 보장 (중앙 정렬)
-              display: "flex",
-              justifyContent: "center",
-              paddingBottom: "20px", // 하단 여백
-            }}
-          >
-            <Document
-              file={url}
-              onLoadSuccess={onDocumentLoadSuccess}
-              loading={
-                <div style={{ padding: "20px", textAlign: "center" }}>
-                  PDF를 로딩 중...
-                </div>
-              }
-              error={
-                <div
-                  style={{
-                    padding: "20px",
-                    textAlign: "center",
-                    color: "#d32f2f",
-                  }}
-                >
-                  PDF를 불러올 수 없습니다.
-                </div>
-              }
-            >
-              <Page
-                pageNumber={pageNumber}
-                scale={scale}
-                renderTextLayer={true}
-                renderAnnotationLayer={true}
-                loading={
-                  <div style={{ padding: "20px", textAlign: "center" }}>
-                    페이지를 로딩 중...
-                  </div>
-                }
-              />
-            </Document>
-          </div>
-        </div>
+      {/* 줌 컨트롤 - 우측 하단 */}
+      <div className="absolute bottom-4 right-4 z-10">
+        <Select
+          options={zoomOptions}
+          value={scale.toString()}
+          onChange={handleZoomChange}
+        />
       </div>
     </div>
   );
