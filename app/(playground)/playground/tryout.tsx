@@ -6,20 +6,27 @@ import CheckIcon from "@/public/icon_check.svg";
 import { useState } from "react";
 import TabGroup from "@/app/components/Tab/TabGroup";
 import TabButton from "@/app/components/Tab/TabButton";
+import PdfViewer from "./PdfViewer";
 
 export default function TryOut() {
   const pdfItems = [
     {
       id: "sample1",
       name: "Sample 1",
+      pdfUrl: "/example_1.pdf",
+      htmlUrl: "/example_1.html",
     },
     {
       id: "sample2",
       name: "Sample 2",
+      pdfUrl: "/example_2.pdf",
+      htmlUrl: "/example_2.html",
     },
     {
       id: "sample3",
       name: "Sample 3",
+      pdfUrl: "/example_3.pdf",
+      htmlUrl: "/example_3.html",
     },
   ];
 
@@ -37,6 +44,7 @@ export default function TryOut() {
             File Upload
           </button>
           <div aria-label="divider" className="w-px h-6 bg-gray-200 mx-4" />
+
           <div className="flex gap-2">
             {pdfItems.map((item) => (
               <Button
@@ -54,7 +62,15 @@ export default function TryOut() {
             ))}
           </div>
         </div>
-        <div className="flex flex-1 bg-gray-100 rounded-lg"></div>
+        <div className="flex flex-1 bg-gray-100 rounded-lg">
+          {selectedItem && (
+            <PdfViewer
+              url={
+                pdfItems.find((item) => item.id === selectedItem)?.pdfUrl || ""
+              }
+            />
+          )}
+        </div>
       </div>
       <div className="w-1/2">
         <div className="w-fit ml-6">
