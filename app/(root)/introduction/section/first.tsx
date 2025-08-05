@@ -1,4 +1,4 @@
-import PlaygroundImage from "@/public/intro_1.svg";
+import PlaygroundImage from "@/app/asset/first_1.svg";
 import ArrowRight from "@/public/icon_next_arrow.svg";
 import Link from "next/link";
 

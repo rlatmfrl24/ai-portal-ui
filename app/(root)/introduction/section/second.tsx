@@ -1,4 +1,4 @@
-import ServicesImage from "@/public/intro_2_bg.svg";
+import ServicesImage from "@/app/asset/second_bg.svg";
 import styles from "../introduction.module.css";
 
 export default function SecondSection() {
