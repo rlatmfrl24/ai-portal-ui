@@ -10,6 +10,8 @@ import MsdsIcon from "@/public/icon_msds.svg";
 import MnrIcon from "@/public/icon_mnr.svg";
 import TryOut from "./tryout";
 import { useSearchParams } from "next/navigation";
+import ApiSpecification from "./apispec";
+import { useRouter } from "next/navigation";
 
 function PlaygroundContent() {
   const playgroundTypes = [
@@ -47,6 +49,8 @@ function PlaygroundContent() {
     setCurrentTab(activeId);
   };
 
+  const router = useRouter();
+
   return (
     <div className="flex w-full flex-1 gap-4">
       <aside className="w-80 h-full shadow-1 rounded-3xl bg-white">
@@ -73,7 +77,10 @@ function PlaygroundContent() {
               icon={type.icon}
               name={type.name}
               active={activeMenu.name === type.name}
-              onClick={() => setActiveMenu(type)}
+              onClick={() => {
+                setActiveMenu(type);
+                router.push(`/playground?id=${type.id}`);
+              }}
             />
           ))}
         </div>
@@ -81,14 +88,7 @@ function PlaygroundContent() {
 
       <div className="flex-1 border rounded-3xl bg-white">
         {/* 탭에 따른 콘텐츠 렌더링 */}
-        {currentTab === "try-out" ? (
-          <TryOut />
-        ) : (
-          <div>
-            <h2 className="text-xl font-semibold mb-4">API Spec.</h2>
-            <p>여기에 API 스펙 관련 콘텐츠가 표시됩니다.</p>
-          </div>
-        )}
+        {currentTab === "try-out" ? <TryOut /> : <ApiSpecification />}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import Button from "@/app/components/Button";
 import UploadIcon from "@/public/icon_upload.svg";
 import CheckIcon from "@/public/icon_check.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TabGroup from "@/app/components/Tab/TabGroup";
 import TabButton from "@/app/components/Tab/TabButton";
 import PdfViewer from "./PdfViewer";
@@ -42,6 +42,38 @@ export default function TryOut() {
     initialPdfItems[0].id
   );
   const [activeTab, setActiveTab] = useState<string>("parsing-result");
+  const [htmlContent, setHtmlContent] = useState<string>("");
+
+  // HTML 파일을 가져오는 함수
+  const fetchHtmlContent = async (htmlUrl: string) => {
+    if (!htmlUrl) {
+      setHtmlContent("");
+      return;
+    }
+
+    try {
+      const response = await fetch(htmlUrl);
+      if (response.ok) {
+        const html = await response.text();
+        setHtmlContent(html);
+      } else {
+        setHtmlContent("<p>HTML 파일을 불러올 수 없습니다.</p>");
+      }
+    } catch (error) {
+      console.error("HTML 파일 로딩 오류:", error);
+      setHtmlContent("<p>HTML 파일 로딩 중 오류가 발생했습니다.</p>");
+    }
+  };
+
+  // 선택된 아이템이 변경될 때 HTML 내용을 가져옴
+  useEffect(() => {
+    const selectedPdfItem = pdfItems.find((item) => item.id === selectedItem);
+    if (selectedPdfItem?.htmlUrl) {
+      fetchHtmlContent(selectedPdfItem.htmlUrl);
+    } else {
+      setHtmlContent("");
+    }
+  }, [selectedItem, pdfItems]);
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -113,8 +145,8 @@ export default function TryOut() {
           )}
         </div>
       </div>
-      <div className="w-1/2">
-        <div className="w-fit ml-6">
+      <div className="w-1/2 flex flex-col h-full">
+        <div className="w-fit ml-6 flex-shrink-0">
           <TabGroup
             activeId={activeTab}
             onChange={(tabId) => setActiveTab(tabId)}
@@ -124,11 +156,30 @@ export default function TryOut() {
             <TabButton id="json-file">JSON File</TabButton>
           </TabGroup>
         </div>
-        <div className="border-t border-gray-200">
+        <div className="border-t border-gray-200 flex-auto h-0 overflow-auto">
           {activeTab === "parsing-result" ? (
-            <div>Parsing Result</div>
+            <div className="h-full overflow-hidden">
+              {htmlContent ? (
+                <div
+                  className="html-content p-6"
+                  style={{
+                    height: "100%",
+                    maxHeight: "100%",
+                    overflow: "auto",
+                    boxSizing: "border-box",
+                  }}
+                  dangerouslySetInnerHTML={{ __html: htmlContent }}
+                />
+              ) : (
+                <div className="text-gray-500 text-center py-8 h-full flex items-center justify-center">
+                  {selectedItem
+                    ? "HTML 파일을 로딩 중입니다..."
+                    : "파일을 선택해주세요."}
+                </div>
+              )}
+            </div>
           ) : (
-            <div>JSON File</div>
+            <div className="h-full overflow-auto p-6">JSON File</div>
           )}
         </div>
       </div>
