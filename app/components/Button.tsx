@@ -18,7 +18,7 @@ export default function Button({
   backgroundColor,
   ...props
 }: ButtonProps) {
-  const baseClasses = "px-3 py-0.5 rounded-lg cursor-pointer";
+  const baseClasses = "px-3 py-0.5 rounded-lg cursor-pointer whitespace-nowrap";
   const variantClasses = variantStyles[variant];
 
   // contained variant의 기본 배경색 클래스 (사용자 정의 색상이 없을 때만)

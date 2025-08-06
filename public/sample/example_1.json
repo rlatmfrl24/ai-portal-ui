@@ -1,0 +1,51 @@
+{
+    "projectTitle": "Project Overview: The Evolution of Artificial Intelligence",
+    "sections": [
+      {
+        "id": 1,
+        "title": "The Rise of Machine Learning",
+        "content": "In the history of Artificial Intelligence (AI), the emergence of Machine Learning was a revolutionary turning point. Machine Learning is a field of technology that gives computers the ability to learn from data without being explicitly programmed. Unlike traditional programming, where developers had to write every rule in code, machine learning systems analyze large-scale data to identify patterns and build their own models to make predictions or decisions. This approach has been effectively applied to various problems that require finding regularities in complex and vast data, such as spam filtering, product recommendation systems, and medical image analysis. With the development of various learning paradigms like supervised, unsupervised, and reinforcement learning, machine learning has become an essential technology across a wide range of industries, not limited to specific tasks. In modern society, where data is an asset, it has become a key factor for companies and research institutions to secure a competitive edge."
+      },
+      {
+        "id": 2,
+        "title": "Deep Learning and Neural Networks",
+        "content": "Deep Learning, a subfield of machine learning, is based on Artificial Neural Networks, which mimic the connection structure of neurons in the human brain. It excels at learning more complex and abstract features of data by using Deep Neural Networks (DNNs) with multiple hidden layers. Deep learning has achieved remarkable results in analyzing unstructured data like image recognition, speech recognition, and natural language processing, which were difficult to handle with traditional machine learning techniques. For example, Convolutional Neural Networks (CNNs) dramatically improved object detection accuracy by effectively extracting spatial features from images, while Recurrent Neural Networks (RNNs) specialized in processing sequential data like time series or sentences, contributing significantly to machine translation and chatbot development. The advancement of deep learning has been accelerated by the availability of large datasets and high-performance computing resources like Graphics Processing Units (GPUs), and it is now considered a core driver of future technologies that will change human life, such as autonomous vehicles and new drug development."
+      },
+      {
+        "id": 3,
+        "title": "Comparison of Major AI Technologies",
+        "content": "The field of artificial intelligence is an ecosystem where various technologies develop in a complementary manner. Understanding the characteristics and application areas of each technology is crucial for effectively designing and utilizing AI-based solutions. The table below summarizes the core concepts and key application areas of representative AI technologies.",
+        "table": {
+          "headers": [
+            "Technology",
+            "Core Concept",
+            "Key Application Areas"
+          ],
+          "rows": [
+            {
+              "Technology": "Machine Learning",
+              "Core Concept": "Generates predictive models by learning patterns from data",
+              "Key Application Areas": "Spam filtering, recommendation systems, stock price prediction"
+            },
+            {
+              "Technology": "Deep Learning",
+              "Core Concept": "Learns complex features of data through multi-layered neural networks",
+              "Key Application Areas": "Image/speech recognition, autonomous driving, medical diagnosis"
+            },
+            {
+              "Technology": "Natural Language Processing (NLP)",
+              "Core Concept": "Enables computers to understand and generate human language",
+              "Key Application Areas": "Machine translation, chatbots, sentiment analysis, text summarization"
+            },
+            {
+              "Technology": "Computer Vision",
+              "Core Concept": "Enables computers to perceive and interpret the visual world",
+              "Key Application Areas": "Object detection, facial recognition, augmented reality (AR)"
+            }
+          ]
+        },
+        "conclusion": "In addition, various technologies such as reinforcement learning and expert systems are being researched to solve specific problems, and the convergence of these technologies heralds the emergence of more intelligent and sophisticated AI systems. While the development of AI technology has positive aspects, such as increasing industrial productivity and creating new services, it also brings ethical and social challenges like job displacement, data bias, and privacy invasion. Therefore, alongside technological advancement, there is an urgent need for social discussion and institutional arrangements for the responsible use of AI."
+      }
+    ]
+  }
+  
