@@ -10,31 +10,11 @@ import MsdsIcon from "@/public/icon_msds.svg";
 import MnrIcon from "@/public/icon_mnr.svg";
 import TryOut from "./tryout";
 import { useSearchParams } from "next/navigation";
+import ApiSpecification from "./apispec";
+import { useRouter } from "next/navigation";
+import { playgroundTypes } from "@/constants/playground";
 
 function PlaygroundContent() {
-  const playgroundTypes = [
-    {
-      id: "shipping-instruction",
-      icon: <ShippingInstructionsIcon />,
-      name: "Shipping Instructions",
-    },
-    {
-      id: "invoice",
-      icon: <InvoicesIcon />,
-      name: "Invoices",
-    },
-    {
-      id: "msds",
-      icon: <MsdsIcon />,
-      name: "Material Safety Data Sheet",
-    },
-    {
-      id: "mnr",
-      icon: <MnrIcon />,
-      name: "M & R",
-    },
-  ];
-
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
@@ -46,6 +26,8 @@ function PlaygroundContent() {
   const handleTabChange = (activeId: string) => {
     setCurrentTab(activeId);
   };
+
+  const router = useRouter();
 
   return (
     <div className="flex w-full flex-1 gap-4">
@@ -70,10 +52,13 @@ function PlaygroundContent() {
           {playgroundTypes.map((type) => (
             <TryOutMenuButton
               key={type.name}
-              icon={type.icon}
+              icon={getIcon(type.id)}
               name={type.name}
               active={activeMenu.name === type.name}
-              onClick={() => setActiveMenu(type)}
+              onClick={() => {
+                setActiveMenu(type);
+                router.push(`/playground?id=${type.id}`);
+              }}
             />
           ))}
         </div>
@@ -81,17 +66,23 @@ function PlaygroundContent() {
 
       <div className="flex-1 border rounded-3xl bg-white">
         {/* 탭에 따른 콘텐츠 렌더링 */}
-        {currentTab === "try-out" ? (
-          <TryOut />
-        ) : (
-          <div>
-            <h2 className="text-xl font-semibold mb-4">API Spec.</h2>
-            <p>여기에 API 스펙 관련 콘텐츠가 표시됩니다.</p>
-          </div>
-        )}
+        {currentTab === "try-out" ? <TryOut /> : <ApiSpecification />}
       </div>
     </div>
   );
+}
+
+function getIcon(type: string) {
+  switch (type) {
+    case "shipping-instruction":
+      return <ShippingInstructionsIcon />;
+    case "invoice":
+      return <InvoicesIcon />;
+    case "msds":
+      return <MsdsIcon />;
+    case "mnr":
+      return <MnrIcon />;
+  }
 }
 
 export default function Playground() {

@@ -1,0 +1,70 @@
+{
+    "projectTitle": "Project Report: Renewable Energy for a Sustainable Future",
+    "sections": [
+      {
+        "id": 1,
+        "title": "The Need for Renewable Energy",
+        "content": "Modern industrial society has developed based on a deep dependence on fossil fuels. Fossil fuels such as coal, oil, and natural gas have been the driving force behind economic growth through high energy efficiency and stable supply, but at the same time, they have caused serious environmental problems. The carbon dioxide emitted during the combustion of fossil fuels is identified as the main cause of global warming, leading to global threats such as rising sea levels, extreme weather events, and ecosystem destruction. Furthermore, air pollutants like fine dust directly threaten human health and increase social costs. As the limitations and side effects of fossil fuels have become apparent, the need for a fundamental energy transition for sustainable development has emerged. Renewable energy is drawing attention as the most realistic and effective alternative to these problems."
+      },
+      {
+        "id": 2,
+        "title": "Types and Characteristics of Major Renewable Energy Sources",
+        "content": "Renewable energy refers to energy that can be obtained from nature and is not at risk of depletion. Representative renewable energy sources include solar, wind, and hydropower, each with its own unique characteristics, advantages, and disadvantages.",
+        "details": [
+          {
+            "name": "Solar Energy",
+            "description": "It is a method of converting the sun's light energy directly into electricity using semiconductor devices. It has relatively few restrictions on installation sites and is easy to maintain, but its disadvantages include large fluctuations in power generation depending on the weather and high initial installation costs."
+          },
+          {
+            "name": "Wind Energy",
+            "description": "It produces electricity by turning turbines using the kinetic energy of the wind. The cost of power generation is relatively low, and a large amount of electricity can be produced by creating large-scale complexes. However, it has locational constraints, as it can only be installed in specific areas where the wind blows continuously, along with noise issues."
+          },
+          {
+            "name": "Hydropower",
+            "description": "It generates electricity by converting the potential energy of water into kinetic energy. It has the significant advantage of being able to predict the amount of power generation and provide a stable supply of electricity. However, it requires the construction of large-scale dams, which can destroy the natural environment, and the number of constructible areas is limited."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Comparison and Outlook of Renewable Energy Technologies",
+        "content": "Each renewable energy technology has clear advantages and disadvantages, making an 'energy mix' strategy important, where the optimal energy source is selected and various sources are combined according to the geographical and environmental characteristics of a specific region. The table below compares the features of major renewable energy technologies.",
+        "table": {
+          "headers": [
+            "Technology",
+            "Advantages",
+            "Disadvantages",
+            "Key Application Areas"
+          ],
+          "rows": [
+            {
+              "Technology": "Solar",
+              "Advantages": "High installation flexibility, low maintenance costs",
+              "Disadvantages": "Weather dependency, high initial cost, large installation area required",
+              "Key Application Areas": "Residential/commercial self-generation, large-scale solar power plants"
+            },
+            {
+              "Technology": "Wind",
+              "Advantages": "Low generation cost, high energy efficiency",
+              "Disadvantages": "Noise and landscape issues, site constraints (wind resources)",
+              "Key Application Areas": "Onshore/offshore wind farms"
+            },
+            {
+              "Technology": "Hydro",
+              "Advantages": "Stable power supply, long lifespan, low operating costs",
+              "Disadvantages": "High construction costs, potential for environmental damage, site constraints",
+              "Key Application Areas": "Large-scale dams, small hydropower"
+            },
+            {
+              "Technology": "Geothermal",
+              "Advantages": "24/7 stable generation, small land footprint",
+              "Disadvantages": "High initial development cost, limited installable locations",
+              "Key Application Areas": "Power plants, district heating systems"
+            }
+          ]
+        },
+        "conclusion": "The transition to renewable energy is no longer an option but a necessity. Although challenges remain, such as initial investment costs, intermittency (fluctuations in power generation depending on the weather), and limitations of power storage technology, these problems are gradually being overcome through global consensus, policy support, and continuous technological innovation. The development of Energy Storage System (ESS) technology and the spread of smart grids will be key elements in compensating for the shortcomings of renewable energy and maximizing energy efficiency. For a sustainable future, we must make greater efforts to expand investment in renewable energy technologies and foster the related industrial ecosystem."
+      }
+    ]
+  }
+  

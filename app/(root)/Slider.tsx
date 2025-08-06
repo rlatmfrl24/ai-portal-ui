@@ -20,9 +20,9 @@ interface CustomArrowProps {
 const CustomArrow = ({ onClick, direction }: CustomArrowProps) => {
   const isPrev = direction === "prev";
   const arrowSrc = isPrev ? (
-    <LeftArrow className="-translate-x-0.5" />
+    <LeftArrow className="-translate-x-0.5 h-8 w-8" />
   ) : (
-    <RightArrow className="translate-x-0.5" />
+    <RightArrow className="translate-x-0.5 h-8 w-8" />
   );
   const positionClass = isPrev ? "-left-24" : "-right-24";
 
