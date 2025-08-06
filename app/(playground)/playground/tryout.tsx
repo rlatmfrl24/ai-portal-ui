@@ -13,6 +13,7 @@ interface PdfItem {
   name: string;
   pdfUrl: string;
   htmlUrl: string;
+  jsonUrl: string;
 }
 
 export default function TryOut() {
@@ -20,20 +21,16 @@ export default function TryOut() {
     {
       id: "sample1",
       name: "Sample 1",
-      pdfUrl: "/example_1.pdf",
-      htmlUrl: "/example_1.html",
+      pdfUrl: "/sample/example_1.pdf",
+      htmlUrl: "/sample/example_1.html",
+      jsonUrl: "/sample/example_1.json",
     },
     {
       id: "sample2",
       name: "Sample 2",
-      pdfUrl: "/example_2.pdf",
-      htmlUrl: "/example_2.html",
-    },
-    {
-      id: "sample3",
-      name: "Sample 3",
-      pdfUrl: "/example_3.pdf",
-      htmlUrl: "/example_3.html",
+      pdfUrl: "/sample/example_2.pdf",
+      htmlUrl: "/sample/example_2.html",
+      jsonUrl: "/sample/example_2.json",
     },
   ];
 
@@ -84,6 +81,7 @@ export default function TryOut() {
         name: file.name.replace(".pdf", ""),
         pdfUrl: fileUrl,
         htmlUrl: "", // 업로드된 파일은 HTML 버전이 없음
+        jsonUrl: "",
       };
 
       setPdfItems((prev) => [...prev, newPdfItem]);
@@ -161,7 +159,7 @@ export default function TryOut() {
             <div className="h-full overflow-hidden">
               {htmlContent ? (
                 <div
-                  className="html-content p-6"
+                  className="p-6"
                   style={{
                     height: "100%",
                     maxHeight: "100%",
