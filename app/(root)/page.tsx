@@ -8,59 +8,31 @@ import CustomSlider from "./Slider";
 import Slider1Image from "@/public/img_document_data_extraction.svg";
 import Slider2Image from "@/public/img_slide_mnr.svg";
 import Link from "next/link";
+import { OCR_ITEMS, SLIDER_DATA } from "@/constants/root";
 
-// 슬라이더 데이터
-const SLIDER_DATA = [
-  {
-    title: "Intelligent Logistics",
-    subtitle: "Document Data Extraction",
-    bgColor: "#4e4d80",
-    image: <Slider1Image />,
-    imageClassName: "self-end",
-  },
-  {
-    title: "Presize M&R Service",
-    subtitle: "with AI-based OCR",
-    bgColor: "#E86940",
-    image: <Slider2Image />,
-    imageClassName: "self-end translate-x-10",
-  },
-  {
-    title: "Carousel Test",
-    subtitle: "Green Slide Example",
-    bgColor: "rgb(22, 163, 74)", // green-600
-    image: null,
-    imageClassName: "",
-  },
-] as const;
+function getSliderImage(id: string) {
+  switch (id) {
+    case "slider-1":
+      return <Slider1Image />;
+    case "slider-2":
+      return <Slider2Image />;
+    default:
+      return null;
+  }
+}
 
-// OCR 아이템 데이터
-const OCR_ITEMS = [
-  {
-    id: "shipping-instruction",
-    image: <ShippingInstruction />,
-    title: "Shipping Instruction",
-    description: "Extracts data from Ocean Carrier SI documents.",
-  },
-  {
-    id: "invoice",
-    image: <Invoice />,
-    title: "Invoice",
-    description: "Extracts data from Terminal Invoice documents.",
-  },
-  {
-    id: "msds",
-    image: <Msds />,
-    title: "MSDS",
-    description: "Extracts data from Material Safety Data Sheet documents.",
-  },
-  {
-    id: "mnr",
-    image: <Mnr />,
-    title: "M&R",
-    description: "Extracts data from Manifest & Receipt documents.",
-  },
-] as const;
+function getOCRImage(id: string) {
+  switch (id) {
+    case "shipping-instruction":
+      return <ShippingInstruction />;
+    case "invoice":
+      return <Invoice />;
+    case "msds":
+      return <Msds />;
+    case "mnr":
+      return <Mnr />;
+  }
+}
 
 export default function Home() {
   return (
@@ -79,9 +51,9 @@ export default function Home() {
                 <span className="text-4xl font-bold text-white">
                   {slide.subtitle}
                 </span>
-                {slide.image && (
-                  <div className={slide.imageClassName}>{slide.image}</div>
-                )}
+                <div className={slide.imageClassName}>
+                  {getSliderImage(slide.id)}
+                </div>
               </div>
             </div>
           ))}
@@ -92,7 +64,7 @@ export default function Home() {
           <OCRItem
             key={item.id}
             id={item.id}
-            image={item.image}
+            image={getOCRImage(item.id)}
             title={item.title}
             description={item.description}
           />

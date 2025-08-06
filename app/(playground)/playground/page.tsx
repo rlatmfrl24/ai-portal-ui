@@ -12,31 +12,9 @@ import TryOut from "./tryout";
 import { useSearchParams } from "next/navigation";
 import ApiSpecification from "./apispec";
 import { useRouter } from "next/navigation";
+import { playgroundTypes } from "@/constants/playground";
 
 function PlaygroundContent() {
-  const playgroundTypes = [
-    {
-      id: "shipping-instruction",
-      icon: <ShippingInstructionsIcon />,
-      name: "Shipping Instructions",
-    },
-    {
-      id: "invoice",
-      icon: <InvoicesIcon />,
-      name: "Invoices",
-    },
-    {
-      id: "msds",
-      icon: <MsdsIcon />,
-      name: "Material Safety Data Sheet",
-    },
-    {
-      id: "mnr",
-      icon: <MnrIcon />,
-      name: "M & R",
-    },
-  ];
-
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
@@ -74,7 +52,7 @@ function PlaygroundContent() {
           {playgroundTypes.map((type) => (
             <TryOutMenuButton
               key={type.name}
-              icon={type.icon}
+              icon={getIcon(type.id)}
               name={type.name}
               active={activeMenu.name === type.name}
               onClick={() => {
@@ -92,6 +70,19 @@ function PlaygroundContent() {
       </div>
     </div>
   );
+}
+
+function getIcon(type: string) {
+  switch (type) {
+    case "shipping-instruction":
+      return <ShippingInstructionsIcon />;
+    case "invoice":
+      return <InvoicesIcon />;
+    case "msds":
+      return <MsdsIcon />;
+    case "mnr":
+      return <MnrIcon />;
+  }
 }
 
 export default function Playground() {
