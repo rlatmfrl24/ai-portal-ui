@@ -5,12 +5,13 @@ interface UserState {
   name: string;
   email: string;
   apiToken: string;
+  setUser: (user: Omit<UserState, "setUser">) => void;
 }
 
-export const useUserStore = create<UserState>()((set) => ({
+export const useUserStore = create<UserState>((set) => ({
   id: "user",
   name: "User",
   email: "user@example.com",
   apiToken: "1234567890",
-  setUser: (user: UserState) => set(user),
+  setUser: (user) => set(user),
 }));

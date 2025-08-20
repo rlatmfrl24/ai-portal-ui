@@ -1,4 +1,4 @@
-import Logo from "../../public/logo.svg?url";
+import Logo from "@/public/logo.svg";
 import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
@@ -14,7 +14,7 @@ export default function RootLayout({
       <header className="sticky top-0 z-50 h-16 w-full flex justify-center items-center bg-[#F5F5F4]">
         <div className="container mx-auto flex items-center gap-6 justify-between">
           <div className="flex items-center gap-6">
-            <Image src={Logo} alt="logo" width={66} height={32} />
+            <Logo width={66} height={32} />
             <Link href="/introduction">Introduction</Link>
             <span className="cursor-pointer">Pricing</span>
             <span className="cursor-pointer">Management</span>
